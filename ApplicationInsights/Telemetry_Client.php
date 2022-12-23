@@ -151,7 +151,7 @@ class Telemetry_Client
      * Sends a Request_Data to the Application Insights service.
      * @param string $name A friendly name of the request.
      * @param string $url The url of the request.
-     * @param int $startTime The timestamp at which the request started.
+     * @param float $startTime The timestamp at which the request started.
      * @param int $durationInMilliseconds The duration, in milliseconds, of the request.
      * @param int $httpResponseCode The response code of the request.
      * @param bool $isSuccessful Whether or not the request was successful.
@@ -168,7 +168,7 @@ class Telemetry_Client
      *
      * @param string $name A friendly name of the request.
      * @param string $url The url of the request.
-     * @param int $startTime The timestamp at which the request started.
+     * @param float $startTime The timestamp at which the request started.
      * @return \ApplicationInsights\Channel\Contracts\Request_Data an initialized Request_Data, which can be sent by using @see endRequest
      */
     public function beginRequest($name, $url, $startTime )
@@ -280,7 +280,7 @@ class Telemetry_Client
      * @param string $name Name of the dependency.
      * @param string $type The Dependency type of value being sent.
      * @param string $commandName Command/Method of the dependency.
-     * @param int $startTime The timestamp at which the request started.
+     * @param float $startTime The timestamp at which the request started.
      * @param int $durationInMilliseconds The duration, in milliseconds, of the request.
      * @param bool $isSuccessful Whether or not the request was successful.
      * @param int $resultCode The result code of the request.
