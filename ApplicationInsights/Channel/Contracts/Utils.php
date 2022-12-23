@@ -8,7 +8,7 @@ class Utils
 {
     /**
      * Removes NULL and empty collections
-     * @param array $sourceArray 
+     * @param array $sourceArray
      * @return array
      */
     public static function removeEmptyValues($sourceArray)
@@ -22,13 +22,13 @@ class Utils
             }
             $newArray[$key] = $value;
         }
-        
+
         return $newArray;
     }
-    
+
     /**
      * Serialization helper.
-     * @param array Items to serialize 
+     * @param array Items to serialize
      * @return array JSON serialized items, nested
      */
     public static function getUnderlyingData($dataItems)
@@ -49,13 +49,13 @@ class Utils
                 $queueToEncode[$key] = $dataItem;
             }
         }
-        
+
         return $queueToEncode;
     }
-    
+
     /**
      * Converts milliseconds to a timespan string as accepted by the backend
-     * @param int $milliseconds 
+     * @param int $milliseconds
      * @return string
      */
     public static function convertMillisecondsToTimeSpan($milliseconds)
@@ -69,30 +69,31 @@ class Utils
         $sec = floor($milliseconds / 1000) % 60;
         $min = floor($milliseconds / (1000 * 60)) % 60;
         $hour = floor($milliseconds / (1000 * 60 * 60)) % 24;
-        
+
         $ms = strlen($ms) == 1 ? '00' . $ms : (strlen($ms) === 2 ? "0" . $ms : $ms);
         $sec = strlen($sec) < 2 ? '0' . $sec : $sec;
         $min = strlen($min) < 2 ? '0' . $min : $min;
         $hour = strlen($hour) < 2 ? '0' . $hour : $hour;
-        
+
         return $hour . ":" . $min . ":" . $sec . "." . $ms;
     }
-    
+
     /**
      * Returns the proper ISO string for Application Insights service to accept.
-     * @param mixed $time 
+     * @param mixed $time
      * @return string
      */
     public static function returnISOStringForTime($time = null)
-    {				
+    {
         if ($time == NULL)
         {
-					$time = microtime(true);
+            $time = microtime(true);
         }
-				$microseconds = substr(sprintf('%06d', round($time-floor($time), 6)*1000000), 0, 6);
-				gmdate("Y-m-d\TH:i:s.", $time).$microseconds.'+00:00Z';     //iso 8601 GMT with microseconds
+
+        $microseconds = substr(sprintf('%06d', round($time-floor($time), 6)*1000000), 0, 6);
+        return gmdate("Y-m-d\TH:i:s.", $time).$microseconds.'+00:00Z';     //iso 8601 GMT with microseconds
     }
-    
+
     /**
      * Returns a Guid on all flavors of PHP. Copied from the PHP manual: http://php.net/manual/en/function.com-create-guid.php
      * @return mixed
