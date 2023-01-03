@@ -1,6 +1,7 @@
 <?php
 namespace ApplicationInsights\Channel\Contracts;
 
+use DateTime;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -32,7 +33,7 @@ class Utils_Test extends TestCase
     }
     public function testReturnISOStringForTime()
     {
-				$date = (new DateTime("2004-02-12T15:19:21+00:00"))->getTimestamp();
+        $date = (new DateTime("2004-02-12T15:19:21+00:00"))->getTimestamp();
         $this->assertEquals(Utils::returnISOStringForTime($date), "2004-02-12T15:19:21.000000+00:00Z");
         $this->assertEquals(Utils::returnISOStringForTime($date+0.1), "2004-02-12T15:19:21.100000+00:00Z", "milliseconds digit 1");
         $this->assertEquals(Utils::returnISOStringForTime($date+0.999999), "2004-02-12T15:19:21.999999+00:00Z", "rounding error");
